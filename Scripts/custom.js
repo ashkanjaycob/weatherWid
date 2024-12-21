@@ -1,6 +1,10 @@
 function getWeather() {
+
   const cityInput = document.getElementById("cityInput");
   const city = cityInput.value.trim();
+  const weatherDiv = document.getElementById("weatherDetails");
+
+  let isLoading = true;
 
   if (!city) {
     Swal.fire({
@@ -16,6 +20,14 @@ function getWeather() {
   const apiKey = "235785bc369ab18214c37221df285463";
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=fa`;
 
+  if(isLoading) {
+    weatherDiv.innerHTML = `
+    <div class="flex items-center justify-center h-32 w-full">
+      <div class="border-4 border-white border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+    </div>
+  `;
+  }
+
   fetch(apiUrl)
     .then((response) => {
       if (!response.ok) {
@@ -24,21 +36,18 @@ function getWeather() {
       return response.json();
     })
     .then((data) => {
-      const weatherDiv = document.getElementById("weatherDetails");
       console.log(data);
       cityInput.value = "";
 
       const iconCode = data.weather[0].icon;
       const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
-
+      isLoading = false;
       weatherDiv.innerHTML = `
           <div class="w-3/4 p-4"> 
           <h2 class="text-3xl my-4">${data.name}</h2>
           <p>دمای هوا : ${data.main.temp.toFixed(1)} درجه °C</p>
           <hr class="my-2" />
-          <p class="my-2">حس واقعی دما : ${data.main.feels_like.toFixed(
-            1
-          )} درجه °C</p>
+          <p class="my-2">حس واقعی دما : ${data.main.feels_like.toFixed(1)} درجه °C</p>
           <p>وضعیت جوی : ${data.weather[0].description}</p>
           </div>
           <div class="w-1/4"> 
@@ -55,5 +64,7 @@ function getWeather() {
         confirmButtonText: "باشه",
       });
       cityInput.value = "";
+      isLoading = false;
+      weatherDiv.innerHTML = "";
     });
 }
