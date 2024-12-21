@@ -16,27 +16,31 @@
     />
     <title>بررسی آب و هوا</title>
   </head>
-  <body>
-    <div class="container mx-auto flex flex-col gap-2 p-4">
-
-      <h1 class="text-white">وضعیت آب و هوا</h1>
-      <input
-        class="p-1 rounded"
-        type="text"
-        id="cityInput"
-        placeholder=" نام شهر مورد نظر خود را وارد کنید"
-      />
-      <button
-        id="weather"
-        onclick="getWeather()"
-        class="bg-red-400 text-md text-white rounded p-1"
-      >
-        دریافت اطلاعات
-      </button>
-
-      <div id="weatherDetails" class="text-white text-xl text-end p-3 mt-8">
-
+  <body class="overflow-hidden">
+    <div
+      class="sm:container md:flex md:flex-row flex flex-col h-96 items-center justify-center mx-auto gap-2 p-4 mt-12 overflow-"
+    >
+      <div class="md:w-2/5 w-full p-8 mt-8">
+        <h1 class="text-white">وضعیت آب و هوا</h1>
+        <input
+          class="w-full p-1 rounded my-4"
+          type="text"
+          id="cityInput"
+          placeholder=" نام شهر مورد نظر خود را وارد کنید"
+        />
+        <button
+          id="weather"
+          onclick="getWeather()"
+          class="bg-red-400 text-md text-white rounded p-1 w-full"
+        >
+          دریافت اطلاعات
+        </button>
       </div>
+
+      <div
+        id="weatherDetails"
+        class="md:w-3/5 w-full flex text-white text-xl text-start p-8 mt-8"
+      ></div>
     </div>
   </body>
 </html>
