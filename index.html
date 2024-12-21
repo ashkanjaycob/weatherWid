@@ -17,6 +17,12 @@
     <title>بررسی آب و هوا</title>
   </head>
   <body class="overflow-hidden">
+    <iframe
+      src="https://earth.nullschool.net/#current/wind/surface/level/orthographic=195.98,27.95,410"
+      class="absolute inset-0 w-full h-full -z-10"
+      frameborder="0"
+    >
+    </iframe>
     <div
       class="sm:container md:flex md:flex-row flex flex-col h-96 items-center justify-center mx-auto gap-2 p-4 mt-12 overflow-"
     >
@@ -31,15 +37,14 @@
         <button
           id="weather"
           onclick="getWeather()"
-          class="bg-red-400 text-md text-white rounded p-1 w-full"
+          class="bg-white/30 text-md text-white rounded p-1 w-full"
         >
           دریافت اطلاعات
         </button>
       </div>
-
       <div
         id="weatherDetails"
-        class="md:w-3/5 w-full flex text-white text-xl text-start p-8 mt-8"
+        class="md:w-3/5 w-full flex text-white text-xl text-start bg-white/10 backdrop-blur-lg border-white/20 rounded"
       ></div>
     </div>
   </body>
