@@ -1,6 +1,4 @@
 function getWeather() {
-  console.log("run test");
-
   const cityInput = document.getElementById("cityInput");
   const city = cityInput.value.trim();
 
@@ -38,7 +36,9 @@ function getWeather() {
           <h2 class="text-3xl my-4">${data.name}</h2>
           <p>دمای هوا : ${data.main.temp.toFixed(1)} درجه °C</p>
           <hr class="my-2" />
-          <p class="my-2">حس واقعی دما : ${data.main.feels_like.toFixed(1)} درجه °C</p>
+          <p class="my-2">حس واقعی دما : ${data.main.feels_like.toFixed(
+            1
+          )} درجه °C</p>
           <p>وضعیت جوی : ${data.weather[0].description}</p>
           </div>
           <div class="w-1/4"> 
@@ -56,8 +56,4 @@ function getWeather() {
       });
       cityInput.value = "";
     });
-
-  setTimeout(() => {
-    console.log("end test");
-  }, 2000);
 }
