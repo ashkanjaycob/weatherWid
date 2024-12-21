@@ -14,9 +14,9 @@ function getWeather() {
     });
     return;
   }
-  
+
   const apiKey = "235785bc369ab18214c37221df285463";
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`;
+  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=fa`;
 
   fetch(apiUrl)
     .then((response) => {
@@ -26,26 +26,28 @@ function getWeather() {
       return response.json();
     })
     .then((data) => {
-      const weatherDiv = document.getElementById("weather");
+      const weatherDiv = document.getElementById("weatherDetails");
       console.log(data);
       cityInput.value = "";
+
+      const iconCode = data.weather[0].icon;
+      const iconUrl = `http://openweathermap.org/img/wn/${iconCode}@2x.png`;
 
       weatherDiv.innerHTML = `
           <h2>${data.name}, ${data.sys.country}</h2>
           <p>Temperature: ${data.main.temp.toFixed(1)}°C</p>
           <p>Description: ${data.weather[0].description}</p>
+          <img src="${iconUrl}" alt="${data.weather[0].description}">
         `;
     })
     .catch((error) => {
-      const weatherDiv = document.getElementById("weather");
-      weatherDiv.innerHTML = "";
-
       Swal.fire({
         title: "شهر یافت نشد!",
         text: "لطفا نام شهر را مجددا بررسی کنید.",
         icon: "error",
         confirmButtonText: "باشه",
       });
+      cityInput.value = "";
     });
 
   setTimeout(() => {
